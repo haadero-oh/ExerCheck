@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ExerCheck: Upload Video Session</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="css/style_custom.css" rel="stylesheet">
+    <script type="module" src="js/navbartoggler.js"></script>
+    <script type="module" src="js/signin_redirect.js"></script>
+    <script type="module" src="js/pose_engine.js"></script>
+    <script type="module" src="js/upload_session.js"></script>
+
+    <style>
+        .pose-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            aspect-ratio: 4 / 3;
+            background-color: #000;
+            /* Black background for empty video state */
+        }
+
+        video,
+        canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Changed to contain so uploaded videos don't stretch */
+        }
+
+        #review-video-player {
+            background: #000;
+            display: block;
+        }
+
+        #review-section {
+            transition: all 0.3s ease-in-out;
+            border: 2px solid #e9ecef;
+        }
+    </style>
+</head>
+
+<body class="min-vh-100 d-flex flex-column">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom-black-1 d-none" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="assets\logo.svg"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><i class="bi bi-caret-down-square-fill"></i></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
+                    <li class="nav-item d-none" id="dashboard-item">
+                        <a class="nav-link navlink-custom-green" href="dashboard.html"><i class="bi bi-easel2-fill"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item" id="login-item">
+                        <a href="loginwithgoogle.html" class="btn btn-custom-green">
+                            <i class="bi-door-open-fill"></i> Log-in
+                        </a>
+                    </li>
+                    <li class="nav-item d-none" id="logout-item">
+                        <button type="button" class="btn btn-custom-green" id="logoutbtn">
+                            <i class="bi bi-x-circle-fill"></i> Log-out
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="bg-custom-black-2 flex-fill d-flex justify-content-center align-items-center">
+        <div class="container my-4">
+            <div class="row justify-content-center">
+                <div class="row justify-content-center bg-custom-black-2 my-3 p-3 rounded-2">
+                    <div class="bg-custom-green dropdown px-3 py-2 mb-3 d-flex justify-content-between">
+                        <h5 class="my-0 session-section-title"><i class="bi bi-hand-index-thumb-fill"></i> <b>STEP 1:</b> SELECT EXERCISE</h5>
+                    </div>
+                    <div class="border-custom-green dropdown px-3 py-2 mb-3 d-flex justify-content-between">
+                        <div class="row"><p class="my-0 text-custom-green"><i class="bi bi-lightbulb-fill text-custom-green"></i>
+                            <b>Reminders:</b> <i>All exercises except jumping jacks and over-head press should be performed on a side view angle.</i></p></div>
+                    </div>
+                    <div class="btn-group mb-3">
+                        <button type="button" class="btn mx-1 btn-custom-green-bordered exercise-btn" data-exercise="pushups"><i
+                                class="bi bi-arrow-right-circle-fill"></i> Pushups</button>
+                        <button type="button" class="btn mx-1 btn-custom-green-bordered exercise-btn" data-exercise="squats"><i
+                                class="bi bi-arrow-right-circle-fill"></i> Squats</button>
+                        <button type="button" class="btn mx-1 btn-custom-green-bordered exercise-btn" data-exercise="jumpjacks"><i
+                                class="bi bi-arrow-right-circle-fill"></i> Jumping Jacks</button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn mx-1 btn-custom-green-bordered exercise-btn" data-exercise="altfwdlunges"><i
+                                class="bi bi-arrow-right-circle-fill"></i> Alt. Forward Lunges</button>
+                        <button type="button" class="btn mx-1 btn-custom-green-bordered exercise-btn" data-exercise="situps"><i
+                                class="bi bi-arrow-right-circle-fill"></i> Sit-ups</button>
+                        <button type="button" class="btn mx-1 btn-custom-green-bordered exercise-btn" data-exercise="overheadpress"><i
+                                class="bi bi-arrow-right-circle-fill"></i> Over-head Press</button>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center my-3 p-3 rounded-2">
+                    <div class="bg-custom-green dropdown px-3 py-2 mb-3 d-flex justify-content-between">
+                        <h5 class="my-0 session-section-title"><i class="bi bi-cloud-arrow-up-fill"></i> <b>STEP 2:</b> UPLOAD VIDEO</h5>
+                    </div>
+
+                    <div class="col-12 col-md-8 mx-auto mb-3">
+                        <label for="videoUpload" class="form-label text-custom-green">Choose a video file to analyze</label>
+                        <input class="form-control" type="file" id="videoUpload" accept="video/mp4,video/webm,video/*">
+                    </div>
+
+                    <div class="pose-wrapper mx-auto my-2 shadow">
+                        <video id="video" playsinline></video>
+                        <canvas id="canvas"></canvas>
+                    </div>
+
+                    <div class="btn-group px-5 mt-3">
+                        <button id="analyzeBtn" type="button" class="btn btn-custom-green">
+                            <i class="bi bi-play-fill"></i> Analyze Video
+                        </button>
+                    </div>
+                </div>
+
+                <div id="review-section" class="row justify-content-center my-3 p-3 d-none">
+                    <div class="bg-custom-green dropdown px-3 py-2 mb-3 d-flex justify-content-between">
+                        <h5 class="my-0 session-section-title"><i class="bi bi-file-earmark-play-fill"></i> <b>STEP 3:</b> REVIEW RESULTS</h5>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <p class="text-custom-green"><strong>Exercise:</strong> <span id="review-exercise-name">-</span></p>
+                        <p class="text-custom-green"><strong>Correct reps:</strong> <span id="review-correctrep-count">0</span></p>
+                        <p class="text-custom-green"><strong>Incorrect repetitions:</strong> <span id="review-incorrectrep-count">0</span></p>
+                        <div class="pose-wrapper mx-auto my-2 shadow">
+                            <video id="review-video-player" controls class="w-100 rounded border shadow-sm"></video>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button id="finalizeBtn" type="button" class="btn btn-custom-green w-100">Finalize and save
+                            results</button>
+                        <button id="discardBtn" type="button" class="btn btn-custom-green-bordered w-100">Discard</button>
+                    </div>
+
+                    <div id="upload-status" class="mt-2 text-center d-none">
+                        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                        <span class="ms-2 text-custom-green">Uploading to cloud...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-custom-black-1 text-white text-center py-4">
+        MMCM 26-CPE-004 | ExerCheck ©2026
+    </footer>
+</body>
+
+</html>

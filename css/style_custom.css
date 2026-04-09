@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+:root {
+  --bs-body-font-family: 'Public Sans', sans-serif;
+  --custom-green: #60FF40;
+  --custom-green-darker: #22cc00;
+  --custom-black-1: #121212;
+  --custom-black-2: #252525;
+}
+
+.text-custom-green { color: var(--custom-green) !important; }
+.text-custom-green-darker { color: var(--custom-green-darker) !important; }
+.text-custom-black-1 { color: var(--custom-black-1) !important; }
+.text-custom-black-2 { color: var(--custom-black-2) !important; }
+.bg-custom-green {background-color: var(--custom-green) !important;}
+.bg-custom-black-1 {background-color: var(--custom-black-1) !important;}
+.bg-custom-black-2 {background-color: var(--custom-black-2) !important;}
+.border-custom-green{ border: 2px solid var(--custom-green);}
+
+.btn-custom-green {
+  border-radius: 0px;
+  background-color: var(--custom-green) !important;
+  border-color: var(--custom-green) !important;
+  color: var(--custom-black-1) !important; /* Forces text to be white */
+}
+.btn-custom-green:hover {
+  border-radius: 0px;
+  background-color: var(--custom-green-darker) !important;
+  border-color: var(--custom-green-darker) !important;
+  color: var(--custom-black-1) !important;
+}
+
+.btn-custom-green-bordered {
+  border-radius: 1px !important;
+  background-color: none;
+  border-color: var(--custom-green) !important;
+  color: var(--custom-green) !important; /* Forces text to be white */
+}
+.btn-custom-green-bordered:hover {
+  border-radius: 0px;
+  background-color: var(--custom-green) !important;
+  border-color: var(--custom-green-darker) !important;
+  color: var(--custom-black-1) !important;
+}
+
+.navlink-custom-green{
+  text-decoration: none;
+  color: var(--custom-green) !important;
+}
+.navlink-custom-green:hover{
+  text-decoration: none;
+  color: var(--custom-green-darker) !important;
+}
+
+.dashboard-section-title{
+  font-family: 'Space Mono';
+  font-style: italic;
+  font-weight: 700;
+}
+
+.session-section-title{
+  font-family: 'Space Mono';
+}
+
+.custom-card-header{
+  font-family: 'Space Mono';
+}
+
+.custom-session-table {
+    --bs-table-bg: var(--custom-black-2);    /* Matches .bg-custom-black-1 */
+    --bs-table-color: white; /* Matches .text-custom-green */
+    border-color: #333;        /* Subtle border so it's not pitch black */
+}
+
+/* Customizing the hover state so it doesn't turn grey/white */
+.custom-session-table.table-hover tbody tr:hover {
+    --bs-table-hover-bg: var(--custom-black-2); /* Slightly lighter black for the hover effect */
+    --bs-table-hover-color: var(--custom-green);
+}
+
+/* Keeping header text green even if Bootstrap tries to override it */
+.custom-session-table thead th {
+    color: var(--custom-green);
+    background-color: var(--custom-black-2); /* Slight depth for the header */
+}

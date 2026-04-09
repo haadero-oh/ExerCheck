@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Log-in to ExerCheck</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!--Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="css/style_custom.css" rel="stylesheet">
+    <script type="module" src="js/google_login.js"></script>
+</head>
+
+<body class="min-vh-100 d-flex flex-column overflow-hidden">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom-black-1">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="assets\logo.svg"></a>
+        </div>
+    </nav>
+    <header style="background-image: url('assets/duotone.jpg');" class="bg-custom-black-2 py-4 py-xl-5 flex-fill d-flex align-items-center" id="login_form">
+        <div class=" container d-flex justify-content-center align-items-center">
+                <div class="bg-custom-black-1 p-5 col-md-6 right-box ">
+                    <div>
+                        <h1 class="mb-3 text-custom-green text-center" style="font-family:Space Mono;"><b>Welcome back!</b></h1>
+                        <p class="mb-3 text-white text-center"><i>To use ExerCheck, log in using your Google account.</i></p>
+                    </div>
+                    <div class="input-group mb-3">
+                        <button type="submit" class="btn btn-lg btn-custom-green w-100 fs-6" id="googleLogin"><i
+                                class="bi bi-door-open-fill"></i>
+                            Log-in</button>
+                    </div>
+                </div>
+        </div>
+    </header>
+
+    <footer class="bg-custom-black-1 text-white text-center py-4">
+       MMCM 26-CPE-004 | ExerCheck ©2026
+    </footer>
+</body>
+
+</html>
